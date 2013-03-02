@@ -1,0 +1,113 @@
+div#userNav {
+	width: 850px;
+	height: 20px;
+	background-color: #cfdced;
+	margin:0px auto;
+}
+
+div#userNav ul {
+	list-style-type: none;
+}
+
+div#userNav ul li {
+	color: #000000;
+	width: 80px;
+	float: right;
+}
+
+div#userNav ul li a {
+	color: #000000;
+}
+
+div#userNav ul li a:hover {
+	color: #ff0000;
+}
+
+div#logo {
+	width: 850px;
+	background-color: #f0f0f0;
+	text-align: center;
+	margin: 0 auto;
+}
+
+div#nav {
+	width: 850px;
+	height: 20px;
+	background-color: #4c6c8f;
+	text-align: center;
+	margin: 0 auto;
+}
+
+ul#menu {
+	list-style-type: none;
+	margin: auto;
+}
+
+ul#menu li {
+	width: 125px;
+	height: 20px;
+	float: left;
+	position: relative;
+	margin: 0 auto;
+}
+
+ul#menu li a {
+	font-family: 宋体;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+ul#menu li a:hover {
+	text-decoration: underline;
+}
+
+ul#menu li ul {
+	display: none;
+	list-style-type: none;
+	position: absolute;
+	left: -40px;
+	top: 19px;
+}
+
+ul#menu li ul li {
+	background-color: #4c6c8f;
+	width: 125px;
+	height: 25px;
+	text-align: center;
+}
+
+ul#menu li ul li a,ul#menu li ul li a:hover {
+	width: 150px;
+	margin-left: 0;
+	text-align: center;
+	border-top: 1px;
+	padding-left: 0px;
+}
+
+ul#menu li ul li a:hover {
+	text-decoration: underline;
+}
+
+ul#menu li:hover ul,ul#menu li ul:hover {
+	display: block;
+}
+
+table#result {
+	margin: 0 auto;
+}
+
+table#result input {
+	text-align: center;
+	width: 80px;
+}
+
+li#selectedMenu {
+	font-family: 黑体;
+	color: #000000;
+	background-color: #CFDCED;
+}
+
+div#background {
+	width: 850px;
+	margin: auto;
+}

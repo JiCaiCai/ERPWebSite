@@ -1,0 +1,49 @@
+div#login {
+	width: 850px;
+	height: 400px;
+	background-color: #f0f0f0;
+	margin: 0px auto;
+}
+
+div#loginInput{
+	width:500px;
+	position:absolute;
+	left:40%;
+	top:33%;
+	margin-top:0px;
+	font-family:黑体;
+}
+
+input#userName,input#password{
+	border: 1px solid #898989; 
+	height: 20px;
+	margin:5px;
+}
+
+div#loginButton{
+	width:500px;
+	position:absolute;
+	left:40%;
+	top:50%;
+	margin-left:5px;
+	margin-top:10px;
+}
+
+input#comfirm,input#cancel{
+	height:30px;
+	width:80px;
+	border:0;
+	color:#ffffff;
+	background-color:#4c6c8f;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+div#loginHint{
+	position:absolute;
+	left:40%;
+	top:45%;
+	height:20px;
+	color:#ff0000;
+	font-size:75%;
+}

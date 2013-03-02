@@ -1,0 +1,40 @@
+div#content {
+	width: 850px;
+	margin: auto;
+}
+
+table#resultTable {
+	background-color: #000000;
+	width: 700px;
+	float:left;
+}
+
+table#resultTable tr.odd {
+	background-color: #cfdced;
+}
+
+table#resultTable tr.even {
+	background-color: #f0f0f0;
+}
+
+div#buttons{
+	width:150px;
+	backgound-color:#ff0000;
+	float:left;
+}
+
+input.button{
+	height:30px;
+	width:80px;
+	border:0;
+	color:#ffffff;
+	background-color:#4c6c8f;
+	margin-left:30px;
+	margin-top:20px;
+	margin-down:20px;
+}
+
+input.cell{
+	background-color:transparent;
+	border:0;
+}
