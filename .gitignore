@@ -2,3 +2,4 @@ WebContent/META-INF
 WEB-INF/*.tld
 WEB_INF/lib
 build
+WebContent/Image
