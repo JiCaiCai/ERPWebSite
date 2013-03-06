@@ -5,7 +5,25 @@
 <base href="http://localhost:8080/ERP/">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/Nav.css" />
-<script language="javascript" src="Javascript/Login.js"></script>
+<script type="text/javascript">
+function Show(){
+	var range=getRange();
+	var elem=document.getElementById("loginBackground");
+	elem.style.width=range.width+"px";
+	elem.style.height=range.height+"px";
+	elem.style.display="block";
+	document.getElementById("login").style.display="block";
+}
+
+function getRange(){
+	var height=document.body.clientHeight;
+	var width=document.body.clientWidth;
+	return {
+		width:width,
+		height:height
+	};
+}
+</script>
 </head>
 <body>
 	<div id=userNav>

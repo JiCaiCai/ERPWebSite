@@ -16,7 +16,7 @@ public class LoginAction extends DispatchAction{
 			HttpServletResponse response) throws Exception{
 		LoginForm loginForm=(LoginForm)form;
 		ActionForward forward=new ActionForward();
-		forward=mapping.findForward("Home");
+		forward=mapping.findForward("home");
 		HttpSession session=request.getSession(true);
 		session.setAttribute("userName",loginForm.getUserName());
 		return forward;

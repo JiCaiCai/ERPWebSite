@@ -6,7 +6,45 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/Nav.css" />
 <link rel="stylesheet" type="text/css" href="CSS/LoginJSP.css" />
-<script language="javascript" src="Javascript/Login.js"></script>
+<script type="text/javascript" src="Javascript/Ajax.js"></script>
+<script type="text/javascript">
+
+	var xmlHttp=GetXMLHttpRequest();
+
+	function Login(){
+		var div=document.getElementById("loginHint");
+		if(IsEmpty()){
+			div.innerHTML="请输帐号和密码";
+			return;
+		}
+		var userName=document.getElementById("userName").value;
+		var password=document.getElementById("password").value;
+		var content="userName="+userName+"&password="+password+"&";
+		var url="ajax.do?method=Login";
+		SendRequest(xmlHttp,"POST",url,content,"text",Validate);
+	}
+	
+	function IsEmpty(){
+		var userName=document.getElementById("userName").value;
+		var password=document.getElementById("password").value;
+		if(userName==""||password=="")
+			return true;
+		else
+			return false;
+	}
+	
+	function Validate(){
+		if(xmlHttp.readyState==4&&xmlHttp.status==200){
+			if(xmlHttp.responseText.indexOf("Error")!=-1){
+				var div=document.getElementById("loginHint");
+				div.innerHTML="帐号或密码错误";
+			}else{
+				  document.loginForm.action ="login.do";   
+				  document.loginForm.submit(); 
+			}
+		}
+	}
+</script>
 <title>ERP-登录</title>
 </head>
 <body>
@@ -19,11 +57,11 @@
 			<div id=loginInput>
 				帐号：<input type="text" id="userName" name="userName"/> <br />
 				 密码：<input type="password" id="password" name="password"
-					onkeydown="if(event.keyCode==13) {Validate();}" />
+					onkeydown="if(event.keyCode==13) {Login();}" />
 			</div>
 			<div id=loginHint></div>
 			<div id=loginButton>
-				<input type="button" id="comfirm" value="登录" onclick="Validate();" /> &nbsp; <a href="Register.jsp">立即注册</a>
+				<input type="button" id="comfirm" value="登录" onclick="Login();" /> &nbsp; <a href="Register.jsp">立即注册</a>
 			</div>
 		</form>
 	</div>

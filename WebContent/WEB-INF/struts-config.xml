@@ -8,17 +8,21 @@
 		</form-bean>
 	</form-beans>
 	<global-forwards>
-		<forward name="Home" path="/JSP/Home.jsp" />
+		<forward name="home" path="/JSP/Home.jsp"/>
 	</global-forwards>
-
 	<action-mappings>
-		<action path="/Home" forward="/JSP/Home.jsp" />
+		<action path="/home" forward="/JSP/Home.jsp"/>
 		<action path="/login" name="loginForm" scope="request"
-			type="com.erp.struts.actions.LoginAction" input="/JSP/Login.jsp">
+			type="com.erp.struts.actions.LoginAction">
 		</action>
-
-		<action path="/logout" parameter="method" scope="request"
+		<action path="/logout" scope="request"
 			type="com.erp.struts.actions.LogoutAction">
+		</action>
+		<action path="/ajax"  parameter="method" scope="request"
+			type="com.erp.struts.actions.AjaxAction">
+		</action>
+		<action path="/stock"  parameter="method" scope="request"
+			type="com.erp.struts.actions.StockAction">
 		</action>
 	</action-mappings>
 </struts-config>
