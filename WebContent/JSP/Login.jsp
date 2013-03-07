@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="CSS/LoginJSP.css" />
 <script type="text/javascript" src="Javascript/Ajax.js"></script>
 <script type="text/javascript">
-
 	var xmlHttp=GetXMLHttpRequest();
 
 	function Login(){
@@ -23,7 +22,7 @@
 		var url="ajax.do?method=Login";
 		SendRequest(xmlHttp,"POST",url,content,"text",Validate);
 	}
-	
+
 	function IsEmpty(){
 		var userName=document.getElementById("userName").value;
 		var password=document.getElementById("password").value;
@@ -32,15 +31,15 @@
 		else
 			return false;
 	}
-	
+
 	function Validate(){
 		if(xmlHttp.readyState==4&&xmlHttp.status==200){
 			if(xmlHttp.responseText.indexOf("Error")!=-1){
 				var div=document.getElementById("loginHint");
 				div.innerHTML="帐号或密码错误";
 			}else{
-				  document.loginForm.action ="login.do";   
-				  document.loginForm.submit(); 
+				document.loginForm.action="login.do";
+				document.loginForm.submit();
 			}
 		}
 	}
@@ -55,13 +54,16 @@
 	<div id=login>
 		<form name="loginForm">
 			<div id=loginInput>
-				帐号：<input type="text" id="userName" name="userName"/> <br />
-				 密码：<input type="password" id="password" name="password"
-					onkeydown="if(event.keyCode==13) {Login();}" />
+				帐号：
+				<input type="text" id="userName" name="userName" />
+				<br />
+				密码：
+				<input type="password" id="password" name="password" onkeydown="if(event.keyCode==13) {Login();}" />
 			</div>
 			<div id=loginHint></div>
 			<div id=loginButton>
-				<input type="button" id="comfirm" value="登录" onclick="Login();" /> &nbsp; <a href="Register.jsp">立即注册</a>
+				<input type="button" id="comfirm" value="登录" onclick="Login();" />
+				&nbsp; <a href="Register.jsp">立即注册</a>
 			</div>
 		</form>
 	</div>

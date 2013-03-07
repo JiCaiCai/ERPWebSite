@@ -6,23 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/Nav.css" />
 <script type="text/javascript">
-function Show(){
-	var range=getRange();
-	var elem=document.getElementById("loginBackground");
-	elem.style.width=range.width+"px";
-	elem.style.height=range.height+"px";
-	elem.style.display="block";
-	document.getElementById("login").style.display="block";
-}
+	function Show(){
+		var range=getRange();
+		var elem=document.getElementById("loginBackground");
+		elem.style.width=range.width+"px";
+		elem.style.height=range.height+"px";
+		elem.style.display="block";
+		document.getElementById("login").style.display="block";
+	}
 
-function getRange(){
-	var height=document.body.clientHeight;
-	var width=document.body.clientWidth;
-	return {
-		width:width,
-		height:height
-	};
-}
+	function getRange(){
+		var height=document.body.clientHeight;
+		var width=document.body.clientWidth;
+		return {
+			width:width,
+			height:height
+		};
+	}
 </script>
 </head>
 <body>

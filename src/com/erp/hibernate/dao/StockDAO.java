@@ -68,6 +68,27 @@ public class StockDAO{
 		return isSuccess;
 	}
 	
+	public boolean Update(Stock stock){
+		Session session=null;
+		Transaction transaction=null;
+		boolean isSuccess=true;
+		MaterialDAO service=new MaterialDAO();
+		Material material=service.Valid(stock.getMaterialID());
+		stock.setMaterial(material);
+		try{
+			session=HibernateSessionFactory.getSession();
+			transaction=session.beginTransaction();
+			session.update(stock);
+			transaction.commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			transaction.rollback();
+			isSuccess=false;
+		}
+		return isSuccess;
+	}
+	
 	public static void main(String[] args){
 		StockDAO stockService=new StockDAO();
 		MaterialDAO materialService=new MaterialDAO();

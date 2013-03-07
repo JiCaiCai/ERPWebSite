@@ -5,6 +5,10 @@ public class Stock{
 	private int stockNum;
 	private Material material;
 	
+	public Stock(){
+		
+	}
+	
 	public Stock(String materialID,int stockNum){
 		this.materialID=materialID;
 		this.stockNum=stockNum;

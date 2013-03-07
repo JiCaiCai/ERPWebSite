@@ -75,5 +75,20 @@ public class StockAction extends DispatchAction{
 			out.print("fail");
 		return null;
 	}
+	
+	public ActionForward Update(ActionMapping mapping,ActionForm form,HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		String materialID=request.getParameter("materialID");
+		int stockNum=Integer.parseInt(request.getParameter("stockNum"));
+		StockDAO service=new StockDAO();
+		Stock stock=new Stock(materialID,stockNum);
+		boolean isSuccess=service.Update(stock);
+		if(isSuccess)
+			out.print("success");
+		else 
+			out.print("fail");
+		return null;
+	}
 
 }

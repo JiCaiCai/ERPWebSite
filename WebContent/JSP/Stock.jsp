@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	if(session.getAttribute("userName")==null){
+	if (session.getAttribute("userName") == null) {
 		response.sendRedirect("Login.jsp");
 	}
 %>
@@ -23,22 +23,22 @@
 	var selectedRow;
 	var originColor;
 	GetColumnName();
-	
+
 	function GetColumnName(){
 		var url="stock.do?method=GetColumnName";
 		SendRequest(xmlHttp,"GET",url,null,"xml",GetColumnNameComplete);
 	}
-	
+
 	function GetColumnNameComplete(){
 		if(xmlHttp.readyState==4&&xmlHttp.status==200){
 			var str=xmlHttp.responseText.split(";");
 			var table=document.getElementById("resultTable");
 			var newRow=table.insertRow(-1);
 			newRow.className="odd";
-			for(var i=0;i<str.length;i++){
+			for( var i=0;i<str.length;i++){
 				var newCell=newRow.insertCell(-1);
 				newCell.innerHTML=str[i];
-			}			
+			}
 		}
 	}
 
@@ -84,7 +84,7 @@
 		var dialog=document.getElementById(divId);
 		dialog.style.display="block";
 	}
-	
+
 	function Insert(){
 		var dialog=document.getElementById("insertDialog");
 		var data=dialog.getElementsByTagName("input");
@@ -102,8 +102,12 @@
 
 	function InsertComplete(){
 		if(xmlHttp.readyState==4&&xmlHttp.status==200){
-			Hide("insertDialog");
-			Query();
+			if(xmlHttp.responseText=="success"){
+				Hide("insertDialog");
+				Query();
+			}else{
+
+			}
 		}
 	}
 
@@ -140,25 +144,77 @@
 		var blackMask=document.getElementById("blackMask");
 		blackMask.style.display="none";
 	}
+	
+	function InitUpdate(){
+		if(selectedRow==null)
+			return;
+		var dialog=document.getElementById("updateDialog");
+		var input=dialog.getElementsByTagName("input");
+		for(var i=0;i<input.length;i++){
+			if(input[i].disabled==true){
+				var td=selectedRow.getElementsByTagName("td");
+				input[i].value=td[0].innerHTML;
+			}
+		}
+		Show("updateDialog");
+	}
+	
+	function Update(){
+		var url="stock.do?method=Update";
+		var content="";
+		var dialog=document.getElementById("updateDialog");
+		var data=dialog.getElementsByTagName("input");
+		for(var i=0;i<data.length;i++){
+			if(data[i].type=="text"&&data[i].value==""){
+				alert("请填写完整");
+				return;
+			}
+			content+=data[i].id+"="+data[i].value+"&";
+		}
+		SendRequest(xmlHttp,"POST",url,content,"text",UpdateComplete);
+	}
+
+	function UpdateComplete(){
+		if(xmlHttp.readyState==4&&xmlHttp.status==200){
+			Hide("updateDialog");
+			Query();
+		}
+	}
 </script>
 <body>
-<div id=blackMask></div>
-<div id=insertDialog>
-<table>
-<tr>
-<td>物料代码</td>
-<td><input id="materialID" type=text/></td>
-</tr>
-<tr>
-<td>库存数量</td>
-<td><input id="stockNum" type=text/></td>
-</tr>
-<tr>
-<td><input class="button" type=button value="确定" onclick="Insert()"/></td>
-<td><input class="button" type=button value="取消" onclick="Hide('insertDialog')"/></td>
-</tr>
-</table>
-</div>
+	<div id=blackMask></div>
+	<div id=insertDialog>
+		<table style="margin: auto">
+			<tr>
+				<td>物料代码:</td>
+				<td><input class="text" id="materialID" type=text /></td>
+			</tr>
+			<tr>
+				<td>库存数量:</td>
+				<td><input class="text" id="stockNum" type=text /></td>
+			</tr>
+			<tr>
+				<td><input class="button" type=button value="确定" onclick="Insert()" /></td>
+				<td align="right"><input class="button" type=button value="取消" onclick="Hide('insertDialog')" /></td>
+			</tr>
+		</table>
+	</div>
+	<div id=updateDialog>
+	<table style="margin: auto">
+			<tr>
+				<td>物料代码:</td>
+				<td><input disabled="disabled" class="text" id="materialID" type=text /></td>
+			</tr>
+			<tr>
+				<td>库存数量:</td>
+				<td><input class="text" id="stockNum" type=text /></td>
+			</tr>
+			<tr>
+				<td><input class="button" type=button value="确定" onclick="Update()" /></td>
+				<td align="right"><input class="button" type=button value="取消" onclick="Hide('updateDialog')" /></td>
+			</tr>
+		</table>	
+	</div>
 	<div id=background>
 		<img src="Image/warehouse.jpg" />
 	</div>
@@ -166,10 +222,10 @@
 		<table id=resultTable>
 		</table>
 		<div id=buttons>
-			<input class="button" type=button value="查询" onclick="Query()"/>
-			<input class="button" type=button value="新增" onclick="Show('insertDialog')"/>
-			<input class="button" type=button value="删除" onclick="Delete()"/>
-			<input class="button" type=button value="修改" onclick="Show('updateDialog')"/>
+			<input class="button" type=button value="查询" style="margin-left: 30px;" onclick="Query()" />
+			<input class="button" type=button value="新增" style="margin-left: 30px;" onclick="Show('insertDialog')" />
+			<input class="button" type=button value="删除" style="margin-left: 30px;" onclick="Delete()" />
+			<input class="button" type=button value="修改" style="margin-left: 30px;" onclick="InitUpdate()" />
 		</div>
 	</div>
 </body>
