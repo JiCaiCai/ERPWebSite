@@ -7,7 +7,6 @@
 </head>
 <base href="http://localhost:8080/ERP/">
 <jsp:include page="Nav.jsp"></jsp:include>
-<jsp:include page="../Html/Login.html"></jsp:include>
 <body>
 	<div id=background>
 		<img src="Image/building.jpg" />
