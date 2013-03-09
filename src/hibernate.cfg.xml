@@ -21,7 +21,10 @@
 			org.hibernate.dialect.MySQL5Dialect
 		</property>
 		<mapping resource="com/erp/hibernate/beans/User.hbm.xml" />
-		<mapping resource="com/erp/hibernate/beans/Material.hbm.xml" />
 		<mapping resource="com/erp/hibernate/beans/Stock.hbm.xml" />
+		<mapping resource="com/erp/hibernate/beans/ManufacturingUnit.hbm.xml" />
+		<mapping resource="com/erp/hibernate/beans/Level.hbm.xml" />
+		<mapping resource="com/erp/hibernate/beans/Material.hbm.xml" />
+		<mapping resource="com/erp/hibernate/beans/Route.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
