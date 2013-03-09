@@ -24,6 +24,15 @@
 		<action path="/stock"  parameter="method" scope="request"
 			type="com.erp.struts.actions.StockAction">
 		</action>
+		<action path="/manufacturingUnit"  parameter="method" scope="request"
+			type="com.erp.struts.actions.ManufacturingUnitAction">
+		</action>
+		<action path="/level"  parameter="method" scope="request"
+			type="com.erp.struts.actions.LevelAction">
+		</action>
+		<action path="/material"  parameter="method" scope="request"
+			type="com.erp.struts.actions.MaterialAction">
+		</action>
 	</action-mappings>
 </struts-config>
 
