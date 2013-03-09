@@ -2,12 +2,12 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	if (session.getAttribute("userName") == null) {
 		response.sendRedirect("Login.jsp");
 	}
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <base href="http://localhost:8080/ERP/">
@@ -15,7 +15,6 @@
 <title>ERP-库存管理</title>
 </head>
 <jsp:include page="Nav.jsp"></jsp:include>
-<jsp:include page="../Html/Login.html"></jsp:include>
 <link rel="stylesheet" type="text/css" href="CSS/Content.css" />
 <script type="text/javascript" src="Javascript/Ajax.js"></script>
 <script type="text/javascript">
@@ -95,7 +94,7 @@
 				alert("请填写完整");
 				return;
 			}
-			content+=data[i].id+"="+data[i].value+"&";
+			content+=data[i].name+"="+data[i].value+"&";
 		}
 		SendRequest(xmlHttp,"POST",url,content,"text",InsertComplete);
 	}
@@ -169,7 +168,7 @@
 				alert("请填写完整");
 				return;
 			}
-			content+=data[i].id+"="+data[i].value+"&";
+			content+=data[i].name+"="+data[i].value+"&";
 		}
 		SendRequest(xmlHttp,"POST",url,content,"text",UpdateComplete);
 	}
@@ -187,11 +186,11 @@
 		<table style="margin: auto">
 			<tr>
 				<td>物料代码:</td>
-				<td><input class="text" id="materialID" type=text /></td>
+				<td><input class="text" name="materialID" type=text /></td>
 			</tr>
 			<tr>
 				<td>库存数量:</td>
-				<td><input class="text" id="stockNum" type=text /></td>
+				<td><input class="text" name="stockNum" type=text /></td>
 			</tr>
 			<tr>
 				<td><input class="button" type=button value="确定" onclick="Insert()" /></td>
@@ -203,11 +202,11 @@
 	<table style="margin: auto">
 			<tr>
 				<td>物料代码:</td>
-				<td><input disabled="disabled" class="text" id="materialID" type=text /></td>
+				<td><input disabled="disabled" class="text" name="materialID" type=text /></td>
 			</tr>
 			<tr>
 				<td>库存数量:</td>
-				<td><input class="text" id="stockNum" type=text /></td>
+				<td><input class="text" name="stockNum" type=text /></td>
 			</tr>
 			<tr>
 				<td><input class="button" type=button value="确定" onclick="Update()" /></td>
