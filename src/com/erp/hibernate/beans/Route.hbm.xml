@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.erp.hibernate.beans">
+
+    <class name="Route" table="Route">
+        <id name="ID" column="ID" type="string">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string" />
+        <property name="manufacturingID" column="manufacturingID" type="string" />
+        <property name="workCenterID" column="workCenterID" type="string" />
+        <property name="leadTime" column="leadTime" type="integer" />
+        <property name="attritionRate" column="attritionRate" type="float" />
+    </class>   
+</hibernate-mapping>
