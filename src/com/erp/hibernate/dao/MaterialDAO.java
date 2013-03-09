@@ -51,7 +51,22 @@ public class MaterialDAO{
 		return isExist;
 	}
 	
+	public List Query(){
+		return DAO.Query("select m.ID,m.name,m.specification,r.name from Material m,Route r where m.routeID=r.ID");
+	}
+	
+	public boolean Delete(String ID){
+		String[] wildcard={ID};
+		return DAO.Delete("delete from Material where ID=?",wildcard);
+	}
+	
+	public boolean Update(String ID,String name,String specification,String routeID){
+		String[] wildcard={name,specification,routeID};
+		return DAO.Update("update Material set name=?,specification=?,routeID=? where ID=?",wildcard);
+	}
+	
 	public static void main(String[] args) {
+		String[] wildcard={"2","3","4"};
 		MaterialDAO service = new MaterialDAO();
 		Material material = service.Valid("0");
 		System.out.println(service.IsExist("物料0"));
