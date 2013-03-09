@@ -20,7 +20,7 @@
 		var password=document.getElementById("password").value;
 		var content="userName="+userName+"&password="+password+"&";
 		var url="ajax.do?method=Login";
-		SendRequest(xmlHttp,"POST",url,content,"text",Validate);
+		SendRequest(xmlHttp,"POST",url,content,"text",LoginComplete);
 	}
 
 	function IsEmpty(){
@@ -32,7 +32,7 @@
 			return false;
 	}
 
-	function Validate(){
+	function LoginComplete(){
 		if(xmlHttp.readyState==4&&xmlHttp.status==200){
 			if(xmlHttp.responseText.indexOf("Error")!=-1){
 				var div=document.getElementById("loginHint");
