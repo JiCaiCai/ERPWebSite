@@ -13,13 +13,16 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import com.erp.hibernate.beans.Stock;
 import com.erp.hibernate.dao.StockDAO;
+import com.erp.util.ColumnNameMapper;
 
 public class StockAction extends DispatchAction{
-	
+
 	public ActionForward GetColumnName(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/xml;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		out.print("materialID;name;stockNum");
+		out.print(ColumnNameMapper.Stock);
 		return null;
 	}
 
@@ -28,26 +31,12 @@ public class StockAction extends DispatchAction{
 		response.setContentType("text/xml;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		StockDAO service=new StockDAO();
-		List<Stock> stocks=service.Query();
-		if(stocks!=null&&stocks.size()>0)
-			GenerateResponseXML(stocks,out);
+		List list=service.Query();
+		if(list!=null&&list.size()>0)
+			Action.GenerateResponseXML(list,out);
 		return null;
 	}
-	
-	private void GenerateResponseXML(List list,PrintWriter out){
-		out.print("<?xml version='1.0' encoding='utf-8'?>");
-		out.print("<table>");
-		Iterator it=list.iterator();
-		while(it.hasNext()){
-			out.print("<row>");
-			Object[] objects=(Object[])it.next();
-			for(int i=0;i<objects.length;i++)
-				out.print("<cell>"+objects[i]+"</cell>");
-			out.print("</row>");
-		}
-		out.print("</table>");
-	}
-	
+
 	public ActionForward Insert(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
@@ -58,11 +47,11 @@ public class StockAction extends DispatchAction{
 		boolean isSuccess=service.Insert(stock);
 		if(isSuccess)
 			out.print("success");
-		else 
+		else
 			out.print("fail");
 		return null;
 	}
-	
+
 	public ActionForward Delete(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
@@ -75,7 +64,7 @@ public class StockAction extends DispatchAction{
 			out.print("fail");
 		return null;
 	}
-	
+
 	public ActionForward Update(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
@@ -86,7 +75,7 @@ public class StockAction extends DispatchAction{
 		boolean isSuccess=service.Update(stock);
 		if(isSuccess)
 			out.print("success");
-		else 
+		else
 			out.print("fail");
 		return null;
 	}
