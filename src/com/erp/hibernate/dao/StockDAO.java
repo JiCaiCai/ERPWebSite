@@ -9,42 +9,13 @@ import com.erp.hibernate.beans.Stock;
 import com.erp.hibernate.util.HibernateSessionFactory;
 
 public class StockDAO{
-	public List<Stock> Query(){
-		Session session=null;
-		Transaction transaction=null;
-		List<Stock> stocks=null;
-		try{
-			session=HibernateSessionFactory.getSession();
-			transaction=session.beginTransaction();
-			org.hibernate.Query query=session.createQuery("select s.materialID,m.name,s.stockNum from Stock s,Material m where s.materialID=m.ID");
-			stocks=(List<Stock>)query.list();
-			query=null;
-			transaction.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			transaction.rollback();
-		}
-		return stocks;
+	public List Query(){
+		return DAO.Query("select s.materialID,m.name,s.stockNum from Stock s,Material m where s.materialID=m.ID");
 	}
 	
-	public boolean Delete(String id){
-		Session session=null;
-		Transaction transaction=null;
-		boolean isSuccess=true;
-		try{
-			session=HibernateSessionFactory.getSession();
-			transaction=session.beginTransaction();
-			org.hibernate.Query query=session.createQuery("delete Stock s where s.materialID=?");
-			query.setString(0,id);
-			query.executeUpdate();
-			query=null;
-			transaction.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			transaction.rollback();
-			isSuccess=false;
-		}
-		return isSuccess;
+	public boolean Delete(String materialID){
+		String[] wildcard={materialID};
+		return DAO.Delete("delete Stock s where s.materialID=?",wildcard);
 	}
 	
 	public boolean Insert(Stock stock){
