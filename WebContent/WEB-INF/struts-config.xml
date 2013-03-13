@@ -7,10 +7,10 @@
 		</form-bean>
 	</form-beans>
 	<global-forwards>
+		<forward name="login" path="/JSP/Login.jsp" />
 		<forward name="home" path="/JSP/Home.jsp" />
 	</global-forwards>
 	<action-mappings>
-		<action path="/home" forward="/JSP/Home.jsp" />
 		<action path="/login" name="loginForm" scope="request"
 			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>

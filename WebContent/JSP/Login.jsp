@@ -5,7 +5,7 @@
 <base href="http://localhost:8080/ERP/">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/Nav.css" />
-<link rel="stylesheet" type="text/css" href="CSS/LoginJSP.css" />
+<link rel="stylesheet" type="text/css" href="CSS/Login.css" />
 <script type="text/javascript" src="Javascript/Ajax.js"></script>
 <script type="text/javascript">
 	var xmlHttp=GetXMLHttpRequest();
@@ -19,7 +19,7 @@
 		var userName=document.getElementById("userName").value;
 		var password=document.getElementById("password").value;
 		var content="userName="+userName+"&password="+password+"&";
-		var url="ajax.do?method=Login";
+		var url="login.do?";
 		SendRequest(xmlHttp,"POST",url,content,"text",LoginComplete);
 	}
 
@@ -38,8 +38,7 @@
 				var div=document.getElementById("loginHint");
 				div.innerHTML="帐号或密码错误";
 			}else{
-				document.loginForm.action="login.do";
-				document.loginForm.submit();
+				window.location.href="JSP/Home.jsp";
 			}
 		}
 	}

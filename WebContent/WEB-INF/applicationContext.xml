@@ -55,13 +55,11 @@
 
 	<!-- 定义Struts配置 -->
 	<bean name="/login" class="com.erp.struts.actions.LoginAction">
-	</bean>
-	<bean name="/logout" class="com.erp.struts.actions.LogoutAction">
-	</bean>
-	<bean name="/ajax" class="com.erp.struts.actions.AjaxAction">
 		<property name="service">
 			<ref local="userDAO" />
 		</property>
+	</bean>
+	<bean name="/logout" class="com.erp.struts.actions.LogoutAction">
 	</bean>
 	<bean name="/stock" class="com.erp.struts.actions.StockAction">
 		<property name="service">

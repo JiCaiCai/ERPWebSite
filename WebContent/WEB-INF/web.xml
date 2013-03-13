@@ -36,6 +36,6 @@
 		<session-timeout>120</session-timeout>
 	</session-config>
 	<welcome-file-list>
-		<welcome-file>home.do</welcome-file>
+		<welcome-file>login.do</welcome-file>
 	</welcome-file-list>
 </web-app>

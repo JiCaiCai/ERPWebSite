@@ -13,7 +13,7 @@ public class LogoutAction extends DispatchAction{
 	public ActionForward execute(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		ActionForward forward=new ActionForward();
-		forward=mapping.findForward("home");
+		forward=mapping.findForward("login");
 		HttpSession session=request.getSession(false);
 		if(session!=null){
 			session.removeAttribute("userName");
