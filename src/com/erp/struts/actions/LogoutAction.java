@@ -12,7 +12,6 @@ public class LogoutAction extends DispatchAction{
 	@Override
 	public ActionForward execute(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
-		// TODO Auto-generated method stub
 		ActionForward forward=new ActionForward();
 		forward=mapping.findForward("home");
 		HttpSession session=request.getSession(false);

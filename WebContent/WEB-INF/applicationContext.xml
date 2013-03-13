@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/ERP</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+	</bean>
+
+	<!-- 配置Hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+
+	<!-- 配置事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 定义DAO -->
+	<bean id="levelDAO" class="com.erp.hibernate.dao.LevelDAO">
+	</bean>
+	<bean id="userDAO" class="com.erp.hibernate.dao.UserDAO">
+	</bean>
+	<bean id="stockDAO" class="com.erp.hibernate.dao.StockDAO">
+	</bean>
+	<bean id="manufacturingUnitDAO" class="com.erp.hibernate.dao.ManufacturingUnitDAO">
+	</bean>
+	<bean id="materialDAO" class="com.erp.hibernate.dao.MaterialDAO">
+	</bean>
+	<!-- 定义DAO代理 -->
+
+
+	<!-- 定义Struts配置 -->
+	<bean name="/login" class="com.erp.struts.actions.LoginAction">
+	</bean>
+	<bean name="/logout" class="com.erp.struts.actions.LogoutAction">
+	</bean>
+	<bean name="/ajax" class="com.erp.struts.actions.AjaxAction">
+		<property name="service">
+			<ref local="userDAO" />
+		</property>
+	</bean>
+	<bean name="/stock" class="com.erp.struts.actions.StockAction">
+		<property name="service">
+			<ref local="stockDAO" />
+		</property>
+	</bean>
+	<bean name="/manufacturingUnit" class="com.erp.struts.actions.ManufacturingUnitAction">
+		<property name="service">
+			<ref local="manufacturingUnitDAO" />
+		</property>
+	</bean>
+	<bean name="/level" class="com.erp.struts.actions.LevelAction">
+		<property name="service">
+			<ref local="levelDAO" />
+		</property>
+	</bean>
+	<bean name="/material" class="com.erp.struts.actions.MaterialAction">
+		<property name="service">
+			<ref local="materialDAO" />
+		</property>
+	</bean>
+</beans>

@@ -16,6 +16,7 @@ import com.erp.hibernate.dao.StockDAO;
 import com.erp.util.ColumnNameMapper;
 
 public class StockAction extends DispatchAction{
+	private StockDAO service;
 
 	public ActionForward GetColumnName(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
@@ -30,7 +31,6 @@ public class StockAction extends DispatchAction{
 			HttpServletResponse response) throws Exception{
 		response.setContentType("text/xml;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		StockDAO service=new StockDAO();
 		List list=service.Query();
 		if(list!=null&&list.size()>0)
 			Action.GenerateResponseXML(list,out);
@@ -42,7 +42,6 @@ public class StockAction extends DispatchAction{
 		PrintWriter out=response.getWriter();
 		String materialID=request.getParameter("materialID");
 		int stockNum=Integer.parseInt(request.getParameter("stockNum"));
-		StockDAO service=new StockDAO();
 		Stock stock=new Stock(materialID,stockNum);
 		boolean isSuccess=service.Insert(stock);
 		if(isSuccess)
@@ -56,7 +55,6 @@ public class StockAction extends DispatchAction{
 			HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
 		String id=request.getParameter("id");
-		StockDAO service=new StockDAO();
 		boolean isSuccess=service.Delete(id);
 		if(isSuccess)
 			out.print("success");
@@ -70,7 +68,6 @@ public class StockAction extends DispatchAction{
 		PrintWriter out=response.getWriter();
 		String materialID=request.getParameter("materialID");
 		int stockNum=Integer.parseInt(request.getParameter("stockNum"));
-		StockDAO service=new StockDAO();
 		Stock stock=new Stock(materialID,stockNum);
 		boolean isSuccess=service.Update(stock);
 		if(isSuccess)
@@ -78,6 +75,14 @@ public class StockAction extends DispatchAction{
 		else
 			out.print("fail");
 		return null;
+	}
+	
+	public StockDAO getService(){
+		return service;
+	}
+
+	public void setService(StockDAO service){
+		this.service=service;
 	}
 
 }

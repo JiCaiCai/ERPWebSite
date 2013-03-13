@@ -14,6 +14,7 @@ import com.erp.hibernate.dao.ManufacturingUnitDAO;
 import com.erp.util.ColumnNameMapper;
 
 public class ManufacturingUnitAction extends DispatchAction{
+	private ManufacturingUnitDAO service=new ManufacturingUnitDAO();
 
 	public ActionForward GetColumnName(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
@@ -28,7 +29,6 @@ public class ManufacturingUnitAction extends DispatchAction{
 			HttpServletResponse response) throws Exception{
 		response.setContentType("text/xml;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		ManufacturingUnitDAO service=new ManufacturingUnitDAO();
 		List list=service.Query();
 		if(list!=null&&list.size()>0)
 			Action.GenerateResponseXML(list,out);
@@ -40,7 +40,6 @@ public class ManufacturingUnitAction extends DispatchAction{
 		PrintWriter out=response.getWriter();
 		String ID=request.getParameter("ID");
 		String name=request.getParameter("name");
-		ManufacturingUnitDAO service=new ManufacturingUnitDAO();
 		ManufacturingUnit mu=new ManufacturingUnit(ID,name);
 		boolean isSuccess=service.Insert(mu);
 		if(isSuccess)
@@ -54,7 +53,6 @@ public class ManufacturingUnitAction extends DispatchAction{
 			HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
 		String ID=request.getParameter("id");
-		ManufacturingUnitDAO service=new ManufacturingUnitDAO();
 		boolean isSuccess=service.Delete(ID);
 		if(isSuccess)
 			out.print("success");
@@ -68,12 +66,19 @@ public class ManufacturingUnitAction extends DispatchAction{
 		PrintWriter out=response.getWriter();
 		String ID=request.getParameter("ID");
 		String name=request.getParameter("name");
-		ManufacturingUnitDAO service=new ManufacturingUnitDAO();
 		boolean isSuccess=service.Update(ID,name);
 		if(isSuccess)
 			out.print("success");
 		else
 			out.print("fail");
 		return null;
+	}
+
+	public ManufacturingUnitDAO getService(){
+		return service;
+	}
+
+	public void setService(ManufacturingUnitDAO service){
+		this.service=service;
 	}
 }

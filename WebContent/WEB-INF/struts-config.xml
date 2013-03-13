@@ -3,35 +3,34 @@
 
 <struts-config>
 	<form-beans>
-		<form-bean name="loginForm"
-			type="com.erp.struts.forms.LoginForm">
+		<form-bean name="loginForm" type="com.erp.struts.forms.LoginForm">
 		</form-bean>
 	</form-beans>
 	<global-forwards>
-		<forward name="home" path="/JSP/Home.jsp"/>
+		<forward name="home" path="/JSP/Home.jsp" />
 	</global-forwards>
 	<action-mappings>
-		<action path="/home" forward="/JSP/Home.jsp"/>
+		<action path="/home" forward="/JSP/Home.jsp" />
 		<action path="/login" name="loginForm" scope="request"
-			type="com.erp.struts.actions.LoginAction">
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
 		<action path="/logout" scope="request"
-			type="com.erp.struts.actions.LogoutAction">
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
-		<action path="/ajax"  parameter="method" scope="request"
-			type="com.erp.struts.actions.AjaxAction">
+		<action path="/ajax" parameter="method" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
-		<action path="/stock"  parameter="method" scope="request"
-			type="com.erp.struts.actions.StockAction">
+		<action path="/stock" parameter="method" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
-		<action path="/manufacturingUnit"  parameter="method" scope="request"
-			type="com.erp.struts.actions.ManufacturingUnitAction">
+		<action path="/manufacturingUnit" parameter="method" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
-		<action path="/level"  parameter="method" scope="request"
-			type="com.erp.struts.actions.LevelAction">
+		<action path="/level" parameter="method" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
-		<action path="/material"  parameter="method" scope="request"
-			type="com.erp.struts.actions.MaterialAction">
+		<action path="/material" parameter="method" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
 		</action>
 	</action-mappings>
 </struts-config>

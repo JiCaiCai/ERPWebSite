@@ -12,13 +12,14 @@ import com.erp.hibernate.dao.UserDAO;
 
 
 public class AjaxAction extends DispatchAction{
+	
+	private UserDAO service;
 
 	public ActionForward Login(ActionMapping mapping,ActionForm form,HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
 		PrintWriter out=response.getWriter();
-		UserDAO service=new UserDAO();
 		User user=service.Valid(userName,password);
 		if(user!=null){
 			out.print(userName);
@@ -28,6 +29,14 @@ public class AjaxAction extends DispatchAction{
 			out.print("Error");
 		}
 		return null;
+	}
+
+	public UserDAO getService(){
+		return service;
+	}
+
+	public void setService(UserDAO service){
+		this.service=service;
 	}
 
 }

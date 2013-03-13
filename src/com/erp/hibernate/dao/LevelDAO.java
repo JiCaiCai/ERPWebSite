@@ -2,12 +2,15 @@ package com.erp.hibernate.dao;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.erp.hibernate.beans.Level;
 import com.erp.hibernate.beans.ManufacturingUnit;
 import com.erp.hibernate.util.HibernateSessionFactory;
 
 public class LevelDAO{
+	
 	public List Query(){
 		return DAO.Query("select l.code,l.level from Level l");
 	}
